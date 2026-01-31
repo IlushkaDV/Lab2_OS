@@ -1,0 +1,18 @@
+# Сборка
+build/
+*.o
+*.a
+*.exe
+*.out
+
+# IDE и редакторы
+.vscode/
+*.suo
+*.user
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# ОС
+.DS_Store
+Thumbs.db
