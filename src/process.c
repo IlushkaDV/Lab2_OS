@@ -27,7 +27,6 @@ static void set_error(const char* msg) {
             return NULL;
         }
         
-        // Собираем командную строку
         char cmd[2048] = {0};
         int pos = snprintf(cmd, sizeof(cmd), "\"%s\"", exe);
         if (pos < 0 || pos >= (int)sizeof(cmd)) {
@@ -111,7 +110,7 @@ static void set_error(const char* msg) {
         }
     }
     
-#else // POSIX
+#else // LINUX
     #include <unistd.h>
     #include <sys/wait.h>
     #include <sys/types.h>
@@ -145,7 +144,7 @@ static void set_error(const char* msg) {
                 close(fd);
             }
             execvp(exe, (char* const*)args);
-            _exit(127); // exec failed
+            _exit(127); 
         }
         
         // Родитель
@@ -185,7 +184,7 @@ static void set_error(const char* msg) {
             return 0;
         }
         
-        // Ожидание с таймаутом (простая реализация)
+        // Ожидание с таймаутом
         int waited = 0;
         while (waited < timeout_ms) {
             pid_t res = waitpid(p->pid, &p->status, WNOHANG);
@@ -195,10 +194,10 @@ static void set_error(const char* msg) {
                     *exit_code = WIFEXITED(p->status) ? WEXITSTATUS(p->status) : -1;
                 return 0;
             }
-            usleep(10000); // 10ms
+            usleep(10000); 
             waited += 10;
         }
-        return 1; // timeout
+        return 1; 
     }
     
     int proc_is_running(proc_t p) {
