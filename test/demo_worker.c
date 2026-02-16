@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
             fflush(stdout);
             SLEEP_MS(200);
         }
-        printf("\n✅ Счёт завершён до %d\n", n);
+        printf("\n Счёт завершён до %d\n", n);
         return 0;
     }
 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
         
         printf("Вычисление: %d + %d = %d\n", a, b, sum);
         SLEEP_MS(300);
-        printf("✅ Результат: %d\n", sum);
+        printf(" Результат: %d\n", sum);
         return 0;
     }
 
@@ -74,13 +74,13 @@ int main(int argc, char* argv[]) {
         SLEEP_MS(200);
         show_progress(10, "Загрузка модуля приветствия");
         SLEEP_MS(200);
-        printf("👋 Привет! Я дочерний процесс!\n");
+        printf(" Привет! Я дочерний процесс!\n");
         SLEEP_MS(200);
-        printf("🌍 Работаю на %s\n", 
+        printf(" Работаю на %s\n", 
         #ifdef _WIN32
             "Windows"
         #else
-            "Linux/POSIX"
+            "Linux"
         #endif
         );
         return 0;
